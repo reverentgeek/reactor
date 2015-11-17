@@ -1,0 +1,18 @@
+{
+  "ecmaFeatures": {
+    "modules": true
+  },
+
+  "env": {
+    "node": true,
+    "es6": true,
+    "browser": true
+  },
+
+  "plugins": [],
+
+  "rules": {
+    "no-unused-vars": [2, {"vars": "all", "args": "none"}],
+    "no-underscore-dangle" : 0
+  }
+}

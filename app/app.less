@@ -1,0 +1,52 @@
+body { padding-top: 70px; }
+a, button, input[type=submit], .btn, div, span { cursor: default; }
+
+body, div, img, span { -webkit-user-drag: none; -webkit-user-select: none; }
+
+.navbar-brand {
+  background: transparent url("./assets/apple-touch-icon-76x76.png") 14px 50% no-repeat;
+  background-size: 40px;
+  position: relative;
+  text-indent: -999px;
+  min-width: 60px;
+}
+
+
+.menu-right {
+	margin-left: 35px;
+}
+.img-container { float: left; }
+
+.searching {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	height: 400px;
+	float: left;
+	width: 100%;
+	position: absolute;
+	top: 0; left: 0;
+	background: transparent url("./assets/ajax-loader.gif") 50% 56% no-repeat;
+}
+
+.gifresults-enter {
+  opacity: 0.01;
+}
+
+.gifresults-enter.gifresults-enter-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.gifresults-leave {
+  opacity: 1;
+}
+
+.gifresults-leave.gifresults-leave-active {
+  opacity: 0.01;
+  transition: opacity .2s ease-in;
+}
+
+.results { overflow: auto; }
+
+.stats { position: relative; display: inline-block; padding: 5px 14px; box-sizing: border-box; }
