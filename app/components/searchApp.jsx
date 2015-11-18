@@ -70,29 +70,6 @@ export default React.createClass( {
 					isSearching: false, searchResults: defaultSearchResults,
 					error: err, total: 0, count: 0, offset: 0 } );
 				} );
-
-	// 		let searchUrl = "http://api.giphy.com/v1/gifs/search?q=" + encodeURI( this.state.text ) + "&api_key=dc6zaTOxFJmzC";
-	// 		searchUrl += "&limit=" + pageSize + "&offset=" + offset;
-	// 		if ( this.state.rating !== "Any" ) {
-	// 			searchUrl += "&rating=" + this.state.rating.toLowerCase();
-	// 		}
-	// 		this.setState( { isSearching: true, searchResults: defaultSearchResults } );
-	// 		// console.log( searchUrl );
-	// 		jquery.get( searchUrl )
- //                .done( ( data ) => {
-	// this.setState( { rating: this.state.rating, text: this.state.text,
-	// isSearching: false, searchResults: data,
-	// error: null,
-	// total: data.pagination["total_count"],
-	// count: data.pagination.count,
-	// offset: data.pagination.offset } );
- //                } )
- //                .fail( ( err ) => {
-	// console.log( err );
-	// this.setState( { rating: this.state.rating, text: this.state.text,
-	// isSearching: false, searchResults: defaultSearchResults,
-	// error: err, total: 0, count: 0, offset: 0 } );
- //                } );
 		} else {
 			this.setState( { searchResults: defaultSearchResults,
 			isSearching: false,
@@ -104,33 +81,33 @@ export default React.createClass( {
 	render: function() {
 		return (
 		<div>
-                        		<Navbar
-		text={this.state.text}
-		rating={this.state.rating}
-		onSearch={this.onSearch}
-		onShowFavorites={this.onShowFavorites}
-		onSearchTextChange={this.onSearchTextChange}
-		onRatingChange={this.onRatingChange} />
+        <Navbar
+			text={this.state.text}
+			rating={this.state.rating}
+			onSearch={this.onSearch}
+			onShowFavorites={this.onShowFavorites}
+			onSearchTextChange={this.onSearchTextChange}
+			onRatingChange={this.onRatingChange} />
 
-                        		<div className="container">
-                            		<Pager onSearchNext={this.onSearchNext}
-		onSearchPrev={this.onSearchPrev}
-		count={this.state.count}
-		offset={this.state.offset}
-		total={this.state.total}
-		pageSize={pageSize} />
-                            		<Results searchResults={this.state.searchResults} isSearching={this.state.isSearching} />
-                            		<Pager onSearchNext={this.onSearchNext}
-		onSearchPrev={this.onSearchPrev}
-		count={this.state.count}
-		offset={this.state.offset}
-		total={this.state.total}
-		pageSize={pageSize}
-		showStats={ true }
-		isSearching={this.state.isSearching} />
-                        		</div>
+			<div className="container">
+				<Pager onSearchNext={this.onSearchNext}
+					onSearchPrev={this.onSearchPrev}
+					count={this.state.count}
+					offset={this.state.offset}
+					total={this.state.total}
+					pageSize={pageSize} />
+				<Results searchResults={this.state.searchResults} isSearching={this.state.isSearching} />
+				<Pager onSearchNext={this.onSearchNext}
+					onSearchPrev={this.onSearchPrev}
+					count={this.state.count}
+					offset={this.state.offset}
+					total={this.state.total}
+					pageSize={pageSize}
+					showStats={ true }
+					isSearching={this.state.isSearching} />
+			</div>
 
-                    		</div>
+		</div>
 		);
 	}
 } );
