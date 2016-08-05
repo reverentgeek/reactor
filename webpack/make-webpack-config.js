@@ -160,7 +160,8 @@ module.exports = function( opts ) {
 		output: output,
 		externals: externals,
 		module: {
-			loaders: [ asyncLoader ].concat( loadersByExtension( loaders ) ).concat( loadersByExtension( stylesheetLoaders ) ).concat( additionalLoaders )
+			loaders: [ asyncLoader ].concat( loadersByExtension( loaders ) ).concat( loadersByExtension( stylesheetLoaders ) ).concat( additionalLoaders ),
+			noParse: /node_modules\/json-schema\/lib\/validate\.js/
 		},
 		devtool: opts.devtool,
 		debug: opts.debug,
