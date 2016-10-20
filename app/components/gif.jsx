@@ -1,53 +1,65 @@
+import { clipboard } from "electron";
 import React from "react";
-import clipboard from "clipboard";
 
-export default React.createClass( {
-	mixins: [ React.addons.PureRenderMixin ],
-	getInitialState: function() {
-		return { hovered: false };
-	},
-	onMouseOver: function( e ) {
+class Gif extends React.Component {
+	constructor( props ) {
+		super( props );
+		this.state = { hovered: false };
+	}
+
+	onMouseOver( e ) {
 		this.setState( { hovered: true } );
-		let gif = this.refs.gif.getDOMNode();
+		let gif = this.refs.gif;
 		gif.src = this.props.animated;
-	},
-	onMouseOut: function( e ) {
+	}
+
+	onMouseOut( e ) {
 		this.setState( { hovered: false } );
-		let gif = this.refs.gif.getDOMNode();
+		let gif = this.refs.gif;
 		gif.src = this.props.still;
-	},
-	onClick: function( e ) {
+	}
+
+	onClick( e ) {
 		e.stopPropagation();
 		e.preventDefault();
 		let link = this.props.original;
 		clipboard.writeText( link );
-		alert( "Copied to clipboard!" );
-		// clipboard.write( { text: link, html: "<a href='" + link + "'>test</a>" } );
-		// console.log( clipboard.readText() + " copied to the clipboard OK" );
-	},
-	onFavClick: function( e ) {
+		new Notification( "Reactor", { body: "Copied to clipboard!" } );
+	}
+
+	onFavClick( e ) {
 		e.stopPropagation();
 		e.preventDefault();
 		alert( "Sad trombone... this don't work yet :'(" );
-	},
-	render: function() {
+	}
+
+	render() {
 		return (
 			<div key={this.props.id}
 				className="img-container">
-					<a key={"gif-" + this.props.id} href="#"
-						onMouseOver={ this.onMouseOver }
-						onMouseOut={ this.onMouseOut }
+					<div key={"gif-" + this.props.id}
+						onMouseOver={this.onMouseOver.bind( this )}
+						onMouseOut={this.onMouseOut.bind( this )}
 						>
 						<div className="img-actions" style={{ opacity: this.state.hovered ? 1 : 0 }}>
-							<a className="btn btn-primary btn-sm" onClick={this.onClick}><i className="glyphicon glyphicon-copy"></i></a>
-							<a className="btn btn-primary btn-sm" onClick={this.onFavClick}><i className="glyphicon glyphicon-star-empty"></i></a>
+							<div className="btn btn-primary btn-sm" onClick={this.onClick.bind( this )}><i className="glyphicon glyphicon-copy"></i></div>
+							<div className="btn btn-primary btn-sm" onClick={this.onFavClick.bind( this )}><i className="glyphicon glyphicon-star-empty"></i></div>
 						</div>
 
 						<img key={"img-" + this.props.id} ref="gif" className="img-responsive"
 						src={this.props.still}
-						onMouseOver={ this.onMouseOver }
-						onMouseOut={ this.onMouseOut } />
-					</a>
+						onMouseOver={this.onMouseOver.bind( this )}
+						onMouseOut={this.onMouseOut.bind( this )} />
+					</div>
 			</div> );
 	}
-} );
+}
+
+Gif.propTypes = {
+	animated: React.PropTypes.string,
+	still: React.PropTypes.string,
+	original: React.PropTypes.string,
+	id: React.PropTypes.string
+};
+
+export default Gif;
