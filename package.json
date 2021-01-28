@@ -17,7 +17,7 @@
     "babel-preset-node6": "^11.0.0",
     "babel-preset-react": "^6.16.0",
     "bootstrap": "^3.3.7",
-    "electron": "^1.4.3",
+    "electron": "^9.4.0",
     "electron-compile": "^3.3.6",
     "electron-debug": "^1.0.1",
     "electron-localshortcut": "^0.6.1",
